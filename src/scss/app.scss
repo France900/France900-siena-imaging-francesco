@@ -1,5 +1,37 @@
-div {
-  background-color: green;
-  color: blue;
-  
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+
+nav {
+  height: 5vh;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 2vh;
+    padding: 1vh;
+    padding-left: 1vw;
+    font-weight: bold;
+  }
+  div {
+    height: 3vh;
+    width: 3vh;
+    border: 1px solid black;
+    font-size: 2vh;
+    margin-left: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+  }
+}
+
+main {
+  display: flex;
+  border: 1px solid black;
+  width: 100vw;
 }
