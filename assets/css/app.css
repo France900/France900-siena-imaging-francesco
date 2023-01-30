@@ -31,6 +31,24 @@ nav div {
 
 main {
   display: flex;
+  flex-wrap: wrap;
   border: 1px solid black;
-  width: 100vw;
+  width: 100%;
+  height: 95vh;
+}
+main .element1 {
+  background-color: green;
+  min-height: 30vh;
+  min-width: 20vw;
+  flex-grow: 1;
+}
+main div {
+  background-color: gray;
+  min-height: 30vh;
+  min-width: 20vw;
+  flex-grow: 1;
+}
+main div img {
+  max-height: 100%;
+  max-width: 100%;
 }
