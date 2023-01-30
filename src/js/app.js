@@ -11,8 +11,8 @@ $(document).ready(function() {
       for (let i = 0; i < referto_1.length; i++) {
         slider +=
         '<div class="mySlides fade">' +
-          '<div class="numbertext">' + (i+1) + '/' + (referto_1.length-1) + '</div>' +
-          '<img src="'+ referto_1[i] +'"' +
+          '<div class="numbertext">' + (i+1) + '/' + (referto_1.length) + '</div>' +
+          '<img src="'+ referto_1[i]+'">' +
         '</div>';
       }
       $('main').append(slider);
@@ -21,8 +21,8 @@ $(document).ready(function() {
       for (let i = 0; i < referto_2.length; i++) {
         slider +=
         '<div class="mySlides fade">' +
-          '<div class="numbertext">' + (i+1) + '/' + (referto_2.length-1) + '</div>' +
-          '<img src="'+ referto_2[i] +'"' +
+          '<div class="numbertext">' + (i+1) + '/' + (referto_2.length) + '</div>' +
+          '<img src="'+ referto_2[i] +'">' +
         '</div>';
       }
       $('main').append(slider);
@@ -31,8 +31,8 @@ $(document).ready(function() {
       for (let i = 0; i < referto_3.length; i++) {
         slider +=
         '<div class="mySlides fade">' +
-          '<div class="numbertext">' + (i+1) + '/' + (referto_3.length-1) + '</div>' +
-          '<img src="'+ referto_3[i] +'"' +
+          '<div class="numbertext">' + (i+1) + '/' + (referto_3.length) + '</div>' +
+          '<img src="'+ referto_3[i] +'">' +
         '</div>';
       }
       $('main').append(slider);
@@ -41,19 +41,19 @@ $(document).ready(function() {
       for (let i = 0; i < referto_4.length; i++) {
         slider +=
         '<div class="mySlides fade">' +
-          '<div class="numbertext">' + (i+1) + '/' + (referto_4.length-1) + '</div>' +
-          '<img src="'+ referto_4[i] +'"' +
+          '<div class="numbertext">' + (i+1) + '/' + (referto_4.length) + '</div>' +
+          '<img src="'+ referto_4[i] +'">' +
         '</div>';
       }
       $('main').append(slider);
     } else {
-      alert("Il valore inserito non è corretto, si prega di riprovare inserendo il valore corretto (es. referto 2)")
+      alert("Il valore inserito non è corretto, si prega di riprovare inserendo il valore corretto (es. referto_2)")
     }  
   });
 
   //funzione - per cancellare elementi
   $('.minus').click(function() {
-    var elements = $('main .element');
+    var elements = $('main .mySlides');
     if (elements.length > 0) {
       elements.last().remove();
     }
@@ -65,6 +65,33 @@ $(document).ready(function() {
     var referto_3 = ['assets/img/carosello3/img9.jpg', 'assets/img/carosello3/img10.jpg', 'assets/img/carosello3/img11.jpg', 'assets/img/carosello3/img12.jpg'];
     var referto_4 = ['assets/img/carosello4/img13.jpg', 'assets/img/carosello4/img14.jpg', 'assets/img/carosello4/img15.jpg', 'assets/img/carosello4/img16.jpg', 'assets/img/carosello4/img17.jpg', 'assets/img/carosello4/img18.jpg'];
   //#endregion
+
+  let slideIndex = 1;
+    showSlides(slideIndex);
+    
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+    }
 
 });
 
