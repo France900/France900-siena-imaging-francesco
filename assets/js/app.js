@@ -21,14 +21,7 @@ var nomiReferti = Object.keys(referto);
 // definisco l'indice di controllo per le slide
 var currentSlide = 1;
 
-// richiamo le slide e collegato html
-$('.pluss').click(function () {
-  choseReferto = prompt("Sono disponibili i referti di: " + nomiReferti + ". Digitare il nome interessato in minuscolo (es. giacomo)");
-  inserisciCarosello();
-});
-//inserisciCarosello()
-
-//funzione - per cancellare elementi
+// CANCELLAZIONE elementi
 $('.minus').click(function () {
   var elements = $('main section');
   if (elements.length > 0) {
@@ -36,27 +29,38 @@ $('.minus').click(function () {
   }
 });
 
-// funzione per l'inserimento del carosello in modo modulare
-function inserisciCarosello() {
-  var section = '<section class="' + choseReferto + '">' + '<div class="mySlides fade">' + '</div>' + '<div class="slideControls">' + '<div class="prev" onclick="sliderMover(\'retreat\')">&#10094;</div>' + '<div class="dots" style="text-align:center">' + '</div>' + '<div class="next" onclick="sliderMover(\'advance\')">&#10095;</i></div>' + '</div>' + '</section>';
-  // QUI IL TAG PRINCIPALE IN CUI SI APPENDE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  $('main').append(section);
-  aggiornaImmagine();
-  // genero i dot in numero uguale alla lunghezza dell'array desiderato
-  for (var index = 0; index < referto.mario.length; index++) {
-    var dotsDeploy = '<span class="dot" onclick="dotSelect(' + index + ')"></span>';
-    $('.dots').append(dotsDeploy);
-  }
-  // raggruppo tutti i dot in un array. non vuole ne var ne let per uscire dallo scope
-  dots = $(".dot");
-  aggiornaDot();
-}
+// SCELGO e GENERO referto
+$('.pluss').click(function () {
+  choseReferto = prompt("Sono disponibili i referti di: " + nomiReferti + ". Digitare il nome interessato in minuscolo (es. giacomo)");
+  if (nomiReferti.includes(choseReferto)) {
+    var section = "\n    <section class=\"".concat(choseReferto, "\">\n      <div class=\"mySlides fade ").concat(choseReferto, "\"></div>\n      <div class=\"slideControls\">\n        <div class=\"prev\" onclick=\"sliderMover('retreat')\">&#10094;</div>\n        <div class=\"dots\" id=\"").concat(choseReferto, "\" style=\"text-align:center\"></div>\n        <div class=\"next\" onclick=\"sliderMover('advance')\">&#10095;</div>\n      </div>\n    </section>");
 
-// scorrimento immagini con le frecce
+    // QUI IL TAG PRINCIPALE IN CUI SI APPENDE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    $('main').append(section);
+    $('.mySlides').empty();
+    var element = "\n      <div class=\"numbertext\">".concat(currentSlide, "/").concat(referto[choseReferto].length, "</div>\n      <img src=\"").concat(referto[choseReferto][currentSlide - 1], "\">");
+    $('.mySlides').append(element);
+
+    // genero i dot in numero uguale alla lunghezza dell'array desiderato
+    for (var index = 0; index < referto[choseReferto].length; index++) {
+      var dotsDeploy = "\n        <span class=\"dot\" onclick=\"dotSelect(".concat(index, ")\"></span>");
+    }
+    if ($("#".concat(choseReferto))) {
+      $('.dots').append(dotsDeploy);
+    }
+    // raggruppo tutti i dot in un array. non vuole ne var ne let per uscire dallo scope
+    dots = $(".dot");
+    aggiornaDot();
+  } else {
+    alert("il fascicolo di " + choseReferto + " non è incluso, perfavore scegliere fra " + nomiReferti);
+  }
+});
+
+// FRECCE SCORRI IMMAGINE
 function sliderMover(direction) {
-  // va messo fuori: var currentSlide = 1;
+  // va messo fuori: var currentSlide = 1; // contatore di posizione
   if (direction == 'advance') {
-    if (currentSlide == referto.mario.length) {
+    if (currentSlide == referto[choseReferto].length) {
       currentSlide = 1;
     } else {
       currentSlide = currentSlide + 1;
@@ -65,7 +69,7 @@ function sliderMover(direction) {
     aggiornaDot();
   } else if (direction == 'retreat') {
     if (currentSlide == 1) {
-      currentSlide = referto.mario.length;
+      currentSlide = referto[choseReferto].length;
     } else {
       currentSlide = currentSlide - 1;
     }
@@ -84,21 +88,18 @@ function dotSelect(parametro) {
 // creazione e l'aggiornamento delle immagini nell'html
 function aggiornaImmagine() {
   $('.mySlides').empty();
-  var element = '<div class="numbertext">' + currentSlide + '/' + referto.mario.length + '</div>' + '<img src="' + referto.mario[currentSlide - 1] + '">';
+  var element = '<div class="numbertext">' + currentSlide + '/' + referto[choseReferto].length + '</div>' + '<img src="' + referto[choseReferto][currentSlide - 1] + '">';
   $('.mySlides').append(element);
 }
 
 // aggiungo il colore del dot selezionato
 function aggiornaDot() {
-  for (var index = 0; index < referto.mario.length; index++) {
+  for (var index = 0; index < referto[choseReferto].length; index++) {
     dots[index].classList.remove("active");
   }
   var dotPoition = currentSlide - 1;
   dots[dotPoition].classList.add("active");
 }
-
-// +'.'+choseReferto   da aggiungere a section con un id per avere una section univoca di accesso e quindi cambiare i selettori seguenti con ad esempio: $("tutti i dot figli di section con id 'choseReferto'")
-// sostituendo choseReferto a mario non prende il risultato del prompt, che è mario o pippo)
 
 /***/ }),
 

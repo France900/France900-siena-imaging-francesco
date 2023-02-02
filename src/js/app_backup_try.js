@@ -15,6 +15,14 @@ var nomiReferti = Object.keys(referto);
 var currentSlide = 1;
 
 
+
+// SCELGO e GENERO referto
+$('.pluss').click(function() {
+  choseReferto = prompt("Sono disponibili i referti di: "+nomiReferti+". Digitare il nome interessato in minuscolo (es. giacomo)")
+  inserisciCarosello()
+})
+
+
 // CANCELLAZIONE elementi
 $('.minus').click(function() {
   var elements = $('main section');
@@ -24,52 +32,43 @@ $('.minus').click(function() {
 });
 
 
-// SCELGO e GENERO referto
-$('.pluss').click(function() {
-  choseReferto = prompt("Sono disponibili i referti di: "+nomiReferti+". Digitare il nome interessato in minuscolo (es. giacomo)")
+// INSERIMENTO del carosello e dots in modo modulare
+function inserisciCarosello() {
   if (nomiReferti.includes(choseReferto)) {
-    var section = `
-    <section class="${choseReferto}">
-      <div class="mySlides fade ${choseReferto}"></div>
-      <div class="slideControls">
-        <div class="prev" onclick="sliderMover(\'retreat\')">&#10094;</div>
-        <div class="dots" id="${choseReferto}" style="text-align:center"></div>
-        <div class="next" onclick="sliderMover(\'advance\')">&#10095;</div>
-      </div>
-    </section>`
-
+    var section = 
+    '<section class="'+choseReferto+'">'+
+    '<div class="mySlides fade '+choseReferto+'">'+
+    '</div>'+
+    '<div class="slideControls">'+
+    '<div class="prev" onclick="sliderMover(\'retreat\')">&#10094;</div>'+
+    '<div class="dots '+choseReferto+'" style="text-align:center">'+'</div>'+
+    '<div class="next" onclick="sliderMover(\'advance\')">&#10095;</i></div>'+
+    '</div>'+
+    '</section>'
     // QUI IL TAG PRINCIPALE IN CUI SI APPENDE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     $('main').append(section);
-    
-    $('.mySlides').empty();
-    var element = `
-      <div class="numbertext">${currentSlide}/${referto[choseReferto].length}</div>
-      <img src="${referto[choseReferto][currentSlide-1]}">`
-    $('.mySlides').append(element);
-
+    aggiornaImmagine()
     // genero i dot in numero uguale alla lunghezza dell'array desiderato
-    for (let index = 0; index < referto[choseReferto].length; index++) {
-      var dotsDeploy = `
-        <span class="dot" onclick="dotSelect(${index})"></span>`
+    for (let index = 0; index < referto.mario.length; index++) {
+      var dotsDeploy = 
+      '<span class="dot" onclick="dotSelect('+index+')"></span>'
       ;
-    }
-    if ($(`#${choseReferto}`)) {
       $('.dots').append(dotsDeploy);
     }
     // raggruppo tutti i dot in un array. non vuole ne var ne let per uscire dallo scope
     dots = $(".dot");
     aggiornaDot()
-
   } else {
     alert("il fascicolo di "+choseReferto+" non è incluso, perfavore scegliere fra "+nomiReferti)
   }
-})
+}
+
 
 // FRECCE SCORRI IMMAGINE
 function sliderMover(direction) {
   // va messo fuori: var currentSlide = 1; // contatore di posizione
   if (direction == 'advance') {
-    if (currentSlide==referto[choseReferto].length) {
+    if (currentSlide==referto.mario.length) {
       currentSlide = 1
     } else {
       currentSlide =currentSlide +1
@@ -78,7 +77,7 @@ function sliderMover(direction) {
     aggiornaDot()
   } else if (direction == 'retreat') {
     if (currentSlide==1) {
-      currentSlide=referto[choseReferto].length
+      currentSlide=referto.mario.length
     } else {
       currentSlide=currentSlide -1
     }
@@ -99,14 +98,14 @@ function dotSelect(parametro) {
 function aggiornaImmagine() {
   $('.mySlides').empty();
   var element = 
-  '<div class="numbertext">'+ currentSlide +'/'+ referto[choseReferto].length +'</div>'+
-  '<img src="'+ referto[choseReferto][currentSlide-1] +'">'
+  '<div class="numbertext">'+ currentSlide +'/'+ referto.mario.length +'</div>'+
+  '<img src="'+ referto.mario[currentSlide-1] +'">'
   $('.mySlides').append(element);
 }
 
 // aggiungo il colore del dot selezionato
 function aggiornaDot() {
-  for (let index = 0; index < referto[choseReferto].length; index++) {
+  for (let index = 0; index < referto.mario.length; index++) {
     dots[index].classList.remove("active")
   }
   var dotPoition = currentSlide - 1
@@ -114,4 +113,4 @@ function aggiornaDot() {
 }
 
 
-
+// sostituendo choseReferto a mario non prende il risultato del prompt, che è mario o pippo)
