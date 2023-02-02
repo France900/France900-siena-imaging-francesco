@@ -33,20 +33,20 @@ $('.minus').click(function () {
 $('.pluss').click(function () {
   choseReferto = prompt("Sono disponibili i referti di: " + nomiReferti + ". Digitare il nome interessato in minuscolo (es. giacomo)");
   if (nomiReferti.includes(choseReferto)) {
-    var section = "\n    <section class=\"".concat(choseReferto, "\">\n      <div class=\"mySlides fade ").concat(choseReferto, "\"></div>\n      <div class=\"slideControls\">\n        <div class=\"prev\" onclick=\"sliderMover('retreat')\">&#10094;</div>\n        <div class=\"dots\" id=\"").concat(choseReferto, "\" style=\"text-align:center\"></div>\n        <div class=\"next\" onclick=\"sliderMover('advance')\">&#10095;</div>\n      </div>\n    </section>");
+    var section = "\n    <section class=\"".concat(choseReferto, "\">\n      <div class=\"mySlides fade ").concat(choseReferto, "\"></div>\n      <div class=\"slideControls\">\n        <div class=\"prev\" onclick=\"sliderMover('retreat')\">&#10094;</div>\n        <div class=\"dots ").concat(choseReferto, "\" style=\"text-align:center\"></div>\n        <div class=\"next\" onclick=\"sliderMover('advance')\">&#10095;</div>\n      </div>\n    </section>");
 
     // QUI IL TAG PRINCIPALE IN CUI SI APPENDE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     $('main').append(section);
-    $('.mySlides').empty();
+    $(".mySlides.".concat(choseReferto)).empty();
     var element = "\n      <div class=\"numbertext\">".concat(currentSlide, "/").concat(referto[choseReferto].length, "</div>\n      <img src=\"").concat(referto[choseReferto][currentSlide - 1], "\">");
-    $('.mySlides').append(element);
+    $(".mySlides.".concat(choseReferto)).append(element);
 
     // genero i dot in numero uguale alla lunghezza dell'array desiderato
     for (var index = 0; index < referto[choseReferto].length; index++) {
       var dotsDeploy = "\n        <span class=\"dot\" onclick=\"dotSelect(".concat(index, ")\"></span>");
-    }
-    if ($("#".concat(choseReferto))) {
-      $('.dots').append(dotsDeploy);
+      if ($(".dots.".concat(choseReferto))) {
+        $(".dots.".concat(choseReferto)).append(dotsDeploy);
+      }
     }
     // raggruppo tutti i dot in un array. non vuole ne var ne let per uscire dallo scope
     dots = $(".dot");

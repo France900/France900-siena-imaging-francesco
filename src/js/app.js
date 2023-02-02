@@ -33,7 +33,7 @@ $('.pluss').click(function() {
       <div class="mySlides fade ${choseReferto}"></div>
       <div class="slideControls">
         <div class="prev" onclick="sliderMover(\'retreat\')">&#10094;</div>
-        <div class="dots" id="${choseReferto}" style="text-align:center"></div>
+        <div class="dots ${choseReferto}" style="text-align:center"></div>
         <div class="next" onclick="sliderMover(\'advance\')">&#10095;</div>
       </div>
     </section>`
@@ -41,20 +41,20 @@ $('.pluss').click(function() {
     // QUI IL TAG PRINCIPALE IN CUI SI APPENDE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     $('main').append(section);
     
-    $('.mySlides').empty();
+    $(`.mySlides.${choseReferto}`).empty();
     var element = `
       <div class="numbertext">${currentSlide}/${referto[choseReferto].length}</div>
       <img src="${referto[choseReferto][currentSlide-1]}">`
-    $('.mySlides').append(element);
+    $(`.mySlides.${choseReferto}`).append(element);
 
     // genero i dot in numero uguale alla lunghezza dell'array desiderato
     for (let index = 0; index < referto[choseReferto].length; index++) {
       var dotsDeploy = `
         <span class="dot" onclick="dotSelect(${index})"></span>`
       ;
-    }
-    if ($(`#${choseReferto}`)) {
-      $('.dots').append(dotsDeploy);
+      if ($(`.dots.${choseReferto}`)) { 
+        $(`.dots.${choseReferto}`).append(dotsDeploy);
+      }
     }
     // raggruppo tutti i dot in un array. non vuole ne var ne let per uscire dallo scope
     dots = $(".dot");
