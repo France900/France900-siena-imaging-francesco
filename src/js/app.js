@@ -1,150 +1,134 @@
-// carica documento html prima
-$(document).ready(function() {
-  
-  console.log("test link succesfull"); 
-  
-  // funzione + per aggiungere elementi
-  $('.pluss').click(function() {
-    var refertChoice = prompt("Scegliere fra il referto 1, 2, 3, 4 (es. referto_2)");
-    if (refertChoice == "referto_1") {
-      var slider = ''
-      for (let i = 0; i < referto_1.length; i++) {
-        slider +=
-        '<div class="mySlides fade">' +
-          '<div class="numbertext">' + (i+1) + '/' + (referto_1.length) + '</div>' +
-          '<img src="'+ referto_1[i]+'">' +
-        '</div>';
-      }
-      $('main').append(slider);
-    } else if (refertChoice == "referto_2") {
-      var slider = ''
-      for (let i = 0; i < referto_2.length; i++) {
-        slider +=
-        '<div class="mySlides fade">' +
-          '<div class="numbertext">' + (i+1) + '/' + (referto_2.length) + '</div>' +
-          '<img src="'+ referto_2[i] +'">' +
-        '</div>';
-      }
-      $('main').append(slider);
-    } else if (refertChoice == "referto_3") {
-      var slider = ''
-      for (let i = 0; i < referto_3.length; i++) {
-        slider +=
-        '<div class="mySlides fade">' +
-          '<div class="numbertext">' + (i+1) + '/' + (referto_3.length) + '</div>' +
-          '<img src="'+ referto_3[i] +'">' +
-        '</div>';
-      }
-      $('main').append(slider);
-    } else if (refertChoice == "referto_4") {
-      var slider = ''
-      for (let i = 0; i < referto_4.length; i++) {
-        slider +=
-        '<div class="mySlides fade">' +
-          '<div class="numbertext">' + (i+1) + '/' + (referto_4.length) + '</div>' +
-          '<img src="'+ referto_4[i] +'">' +
-        '</div>';
-      }
-      $('main').append(slider);
-    } else {
-      alert("Il valore inserito non è corretto, si prega di riprovare inserendo il valore corretto (es. referto_2)")
-    }  
-  });
+//#region archivio immagini
+var referto = {
+  carlo: ['assets/img/carosello1/img1.jpg', 'assets/img/carosello1/img2.jpg', 'assets/img/carosello1/img3.jpg'],
+  marco: ['assets/img/carosello2/img4.jpg', 'assets/img/carosello2/img5.jpg', 'assets/img/carosello2/img6.jpg', 'assets/img/carosello2/img7.jpg', 'assets/img/carosello2/img8.jpg'],
+  gino: ['assets/img/carosello3/img9.jpg', 'assets/img/carosello3/img10.jpg', 'assets/img/carosello3/img11.jpg', 'assets/img/carosello3/img12.jpg'],
+  pino: ['assets/img/carosello4/img13.jpg', 'assets/img/carosello4/img14.jpg', 'assets/img/carosello4/img15.jpg', 'assets/img/carosello4/img16.jpg', 'assets/img/carosello4/img17.jpg', 'assets/img/carosello4/img18.jpg'],
+}
+// array nomi referti
+var nomiReferti = Object.keys(referto);
 
-  //funzione - per cancellare elementi
-  $('.minus').click(function() {
-    var elements = $('main .mySlides');
-    if (elements.length > 0) {
-      elements.last().remove();
-    }
-  });
+// database immagini
+var arrayNest = [
+  "img/img_lights_wide.jpg",
+  "img/img_nature_wide.jpg",
+  "img/img_snow_wide.jpg",
+  "img/img_lights_wide.jpg",
+  "img/img_nature_wide.jpg",
+  "img/img_snow_wide.jpg",
+  "img/img_lights_wide.jpg",
+  "img/img_nature_wide.jpg",
+  "img/img_snow_wide.jpg",
+  "img/img_lights_wide.jpg",
+  "img/img_nature_wide.jpg",
+  "img/img_snow_wide.jpg",
+  "img/img_lights_wide.jpg",
+  "img/img_nature_wide.jpg",
+  "img/img_snow_wide.jpg",
+  "img/img_mountains_wide.jpg"
+]
+//#endregion
 
-  //#region archivio immagini
-    var referto_1 = ['assets/img/carosello1/img1.jpg', 'assets/img/carosello1/img2.jpg', 'assets/img/carosello1/img3.jpg'];
-    var referto_2 = ['assets/img/carosello2/img4.jpg', 'assets/img/carosello2/img5.jpg', 'assets/img/carosello2/img6.jpg', 'assets/img/carosello2/img7.jpg', 'assets/img/carosello2/img8.jpg'];
-    var referto_3 = ['assets/img/carosello3/img9.jpg', 'assets/img/carosello3/img10.jpg', 'assets/img/carosello3/img11.jpg', 'assets/img/carosello3/img12.jpg'];
-    var referto_4 = ['assets/img/carosello4/img13.jpg', 'assets/img/carosello4/img14.jpg', 'assets/img/carosello4/img15.jpg', 'assets/img/carosello4/img16.jpg', 'assets/img/carosello4/img17.jpg', 'assets/img/carosello4/img18.jpg'];
-  //#endregion
-
-  let slideIndex = 1;
-    showSlides(slideIndex);
-    
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-    
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
-    
-    function showSlides(n) {
-      let i;
-      let slides = document.getElementsByClassName("mySlides");
-      let dots = document.getElementsByClassName("dot");
-      if (n > slides.length) {slideIndex = 1}    
-      if (n < 1) {slideIndex = slides.length}
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-      }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-      }
-      slides[slideIndex-1].style.display = "block";  
-      dots[slideIndex-1].className += " active";
-    }
-
-});
+// definisco l'indice di controllo per le slide
+var currentSlide = 1;
 
 
-/*
+
+// richiamo le slide e collegato html
 $('.pluss').click(function() {
-  var refertChoice = prompt("Scegliere fra il referto 1, 2, 3, 4 (es. referto_2)");
-  console.log(refertChoice[3]);
-  if (
-    refertChoice == "referto_1" || 
-    refertChoice == "referto_2" || 
-    refertChoice == "referto_3" || 
-    refertChoice == "referto_4"
-    ) {
-      var slider = ''
-      for (let i = 0; i < refertChoice.length; i++) {
-        slider +=
-        '<div class="mySlides fade">' +
-          '<div class="numbertext">' + (i+1) + '/' + (refertChoice.length-1) + '</div>' +
-          '<img src="'+ refertChoice[i] +'" style="width:100%">' +
-        '</div>';
-        console.log(refertChoice[i]);
-      }
-      $('main').append(slider);
-  } else {
-    alert("Il valore inserito non è corretto, si prega di riprovare inserendo il valore corretto (es. referto_2)")
-  }  
+  inserisciCarosello()
+})
+inserisciCarosello()
+
+//funzione - per cancellare elementi
+$('.minus').click(function() {
+  var elements = $('main section');
+  if (elements.length > 0) {
+    elements.last().remove();
+  }
 });
-*/
-
-  // funzione + per aggiungere elementi
-  // $('.pluss').click(function() {
-  //   var refertChoice = prompt("Scegliere fra il referto 1, 2, 3, 4 (es. referto_2)");
-  //   if (refertChoice == "referto_1") {
-  //     $('main').append(
-  //       '<div class="element1">Element1</div>'
-  //     );
-  //   } else if (refertChoice == "referto_2") {
-  //     $('main').append(
-  //       '<div class="element2">Element2</div>'
-  //     );
-  //   } else if (refertChoice == "referto_3") {
-  //     $('main').append(
-  //       '<div class="element3">Element3</div>'
-  //     );
-  //   } else if (refertChoice == "referto_4") {
-  //     $('main').append(
-  //       '<div class="element4">Element4</div>'
-  //     );
-  //   } else {
-  //     alert("Il valore inserito non è corretto, si prega di riprovare inserendo il valore corretto (es. referto 2)")
-  //   }  
-  // });
 
 
- 
+// funzione per l'inserimento del carosello in modo modulare
+function inserisciCarosello() {
+  var section = 
+  '<section>'+
+  '<div class="slideshow-container mySlides fade">'+
+  '</div>'+
+  '<div class="slideControls">'+
+  '<div class="prev" onclick="sliderMover(\'retreat\')">&#10094;</div>'+
+  '<div class="dots" style="text-align:center">'+
+  '</div>'+
+  '<div class="next" onclick="sliderMover(\'advance\')">&#10095;</i></div>'+
+  '</div>'+
+  '</section>'
+  // QUI IL TAG PRINCIPALE IN CUI SI APPENDE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  $('main').append(section);
+  aggiornaImmagine()
+  // genero i dot in numero uguale a arrayNest.lenght
+  for (let index = 0; index < arrayNest.length; index++) {
+    var dotsDeploy = 
+    '<span class="dot" onclick="dotSelect('+index+')"></span>'
+    ;
+    $('.dots').append(dotsDeploy);
+  }
+  // raggruppo tutti i dot in un array. non vuole ne var ne let per uscire dallo scope
+  dots = $(".dot");
+  aggiornaDot()
+}
+
+
+// scorrimento immagini con le frecce
+function sliderMover(direction) {
+  // va messo fuori: var currentSlide = 1;
+  if (direction == 'advance') {
+    if (currentSlide==arrayNest.length) {
+      currentSlide = 1
+    } else {
+      currentSlide =currentSlide +1
+    }
+    aggiornaImmagine()
+    aggiornaDot()
+  } else if (direction == 'retreat') {
+    if (currentSlide==1) {
+      currentSlide=arrayNest.length
+    } else {
+      currentSlide=currentSlide -1
+    }
+    aggiornaImmagine()
+    aggiornaDot()
+  }
+}
+
+// cambio immagine al click sul dot e il colore del dot
+function dotSelect(parametro) {
+  currentSlide = parametro +1
+  aggiornaImmagine()
+  aggiornaDot()
+}
+
+
+// creazione e l'aggiornamento delle immagini nell'html
+function aggiornaImmagine() {
+  $('.mySlides').empty();
+  var element = 
+  '<div class="numbertext">'+ currentSlide +'/'+ arrayNest.length +'</div>'+
+  '<img src="'+ arrayNest[currentSlide-1] +'">'
+  $('.mySlides').append(element);
+}
+
+// aggiungo il colore del dot selezionato
+function aggiornaDot() {
+  for (let index = 0; index < arrayNest.length; index++) {
+    dots[index].classList.remove("active")
+  }
+  var dotPoition = currentSlide - 1
+  dots[dotPoition].classList.add("active");
+}
+
+
+
+
+
+
+
