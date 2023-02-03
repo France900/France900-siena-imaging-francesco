@@ -83,6 +83,30 @@ $('.pluss').click(function() {
 */
 
 
+/*
+<div class="carousel" id="carousel-1">
+  <!-- Content of carousel 1 -->
+  <button class="arrow" data-target="carousel-1">Next</button>
+</div>
+
+<div class="carousel" id="carousel-2">
+  <!-- Content of carousel 2 -->
+  <button class="arrow" data-target="carousel-2">Next</button>
+</div>
+
+...
+
+<script>
+  function moveCarousel(id) {
+    // Code to move the carousel with the given id
+  }
+
+  $('.arrow').click(function() {
+    var id = $(this).data('target');
+    moveCarousel(id);
+  });
+</script>
+
 
 
 /*
@@ -111,3 +135,7 @@ $('.pluss').click(function() {
           
         }) 
         */
+
+
+
+        

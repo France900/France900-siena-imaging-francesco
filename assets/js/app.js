@@ -33,7 +33,7 @@ $('.minus').click(function () {
 $('.pluss').click(function () {
   choseReferto = prompt("Sono disponibili i referti di: " + nomiReferti + ". Digitare il nome interessato in minuscolo (es. giacomo)");
   if (nomiReferti.includes(choseReferto)) {
-    var section = "\n    <section class=\"".concat(choseReferto, "\">\n      <div class=\"mySlides fade ").concat(choseReferto, "\"></div>\n      <div class=\"slideControls\">\n        <div class=\"prev\" onclick=\"sliderMover('retreat')\">&#10094;</div>\n        <div class=\"dots ").concat(choseReferto, "\" style=\"text-align:center\"></div>\n        <div class=\"next\" onclick=\"sliderMover('advance')\">&#10095;</div>\n      </div>\n    </section>");
+    var section = "\n    <section class=\"".concat(choseReferto, "\">\n      <div class=\"slideControls\">\n        <div class=\"prev\" onclick=\"sliderMover('retreat')\">&#10094;</div>\n        <div class=\"dots ").concat(choseReferto, "\" style=\"text-align:center\"></div>\n        <div class=\"next\" onclick=\"sliderMover('advance')\">&#10095;</div>\n      </div>\n      <div class=\"mySlides fade ").concat(choseReferto, "\"></div>\n    </section>");
 
     // QUI IL TAG PRINCIPALE IN CUI SI APPENDE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     $('main').append(section);

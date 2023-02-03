@@ -1,0 +1,31 @@
+Il progetto è stato pensato per essere accessibile il piu semplicemente possibile,
+per questo è stato scelto di evitare qualsiasi framework, ottimi ma con una lieve complessita in piu nell'eseguzione della repo
+
+Sono tuttavia stati implementati l'scss e jquery per avere una programmazione piu fluida e una migliore interazione con il documento html
+
+Purtroppo il progetto presenta alcuni bug e mancanze
+
+ecco le differenze sulla richiesta del progetto (pdf con l'assegnazione incluso nella repo):
+
+Aggiunte e modifiche
+- modificato il sistema di scorrimento delle slide per una questione di user interface.
+  Utilizzare i dot cliccabili per selezionare l'immagine o le frecce per scorrerle risulta in una piu chiara comprensione delle
+  slide osservate rispetto a una barra con uno slider.
+- aggiunto un indicatore numerico in altro a destra (x/y) per le stesse motivazioni di chiarezza
+
+Bug e mancanze da completare
+- richiamando lo stesso referto i dot e le immagini si ripetono all'interno dell'elemento
+- scorrendo le immagini tutti gli slider si aggiornano sulla stessa immagine e gallery
+- l'scss non è completo
+- essendo incompleto l'scss non sono state aggiunte le mediaqueries per differenze di schermo e cellulari
+- una parte della rielaborazione del carosello è avvenuta in una repo separata dal progetto, nel tentativo di implementare piu modularità possibile
+- la sezione bonus è stata solo parzialmente eseguita
+- Il file readme è stato compilato in txt anziche markdown poiche non conoscevo il linguaggio
+
+p.s. in src/js sono presenti vari file di costruzione, l'unico di interesse è app.js
+
+Nota personale:
+Mi dispiace per la grande quantità di bug e mancanze.
+Purtroppo essendo gia impiegato a tempo pieno in un corso di formazione fino al 7 e avendo avuto un trasloco finito durante questa settimana, ho avuto veramente poco tempo a disposizione.
+Complice che sono dovuto andarmi a ristudiare molte parti essendo da qualche tempo impegnato in altri lavori al di la della programmazione, sono anche 
+dispiaciuto per la qualità del codice

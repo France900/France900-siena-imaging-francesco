@@ -30,12 +30,12 @@ $('.pluss').click(function() {
   if (nomiReferti.includes(choseReferto)) {
     var section = `
     <section class="${choseReferto}">
-      <div class="mySlides fade ${choseReferto}"></div>
       <div class="slideControls">
         <div class="prev" onclick="sliderMover(\'retreat\')">&#10094;</div>
         <div class="dots ${choseReferto}" style="text-align:center"></div>
         <div class="next" onclick="sliderMover(\'advance\')">&#10095;</div>
       </div>
+      <div class="mySlides fade ${choseReferto}"></div>
     </section>`
 
     // QUI IL TAG PRINCIPALE IN CUI SI APPENDE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
